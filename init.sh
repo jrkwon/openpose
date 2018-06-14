@@ -1,0 +1,2 @@
+mkdir json_output
+mkdir json_output_live
