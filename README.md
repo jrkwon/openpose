@@ -73,11 +73,35 @@ Note that you must run this in the `openpose` environment.
 (openpose) $ make -j`nproc`
 ```
 
-
 ---
 
+## Work with 3D Pose Baseline
+
+- Create folders using `init.sh`
+
+### With a live camera
+
+- Run OpenPose. All 2D joints in each video frame will be saved as the JSON file format.
+```
+(openpose) $ ./build/examples/openpose/openpose.bin --write_json json_output_live
+```
+- Run 3D Pose Baseline in a new Terminal and activate the Conda environment for the 3D Pose Baseline. In my case, the environment name is `pose-baseline`. Note that you can find my repository for the 3D Pose Baseline in my github.
+
+```
+(pose-baseline) $ JSON_DIR=../openpose/json_output_live
+(pose-baseline) $ python src/openpose_3dpose_sandbox_realtime.py --camera_frame --residual --batch_norm --dropout 0.5 --max_norm --evaluateActionWise --use_sh --epochs 200 --load 4874200 --openpose $JSON_DIR --write_gif --gif_fps 30 --verbose 3 
+```
+
+### With a video 
+
+- Run OpenPose with the options as follows. You may need to change the filename for your own video files.
+```
+./build/examples/openpose/openpose.bin --video examples/media/walking.ogv --write_json json_output
+```
 
 
+
+---
 <p align="center">
     <img src="doc/media/pose_face_hands.gif", width="480">
 </p>
