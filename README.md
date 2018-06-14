@@ -10,7 +10,7 @@
 
 ## Notes from Jaerock
 
-This repository is a slight modified version of the original. I assume that we are using a Conda environment.
+This repository is a slightly modified version of the original. I assume that we are using a Conda environment.
 
 ### Prerequisites
 
