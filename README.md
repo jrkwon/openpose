@@ -4,11 +4,79 @@
 
 -----------------
 
-| **`Linux`** |
-|-------------|
-|[![Build Status](https://travis-ci.org/CMU-Perceptual-Computing-Lab/openpose.svg?branch=master)](https://travis-ci.org/CMU-Perceptual-Computing-Lab/openpose)|
-
 [OpenPose](https://github.com/CMU-Perceptual-Computing-Lab/openpose) represents the **first real-time multi-person system to jointly detect human body, hand, and facial keypoints (in total 130 keypoints) on single images**.
+
+---
+
+## Notes from Jaerock
+
+This repository is a slight modified version of the original. I assume that we are using a Conda environment.
+
+### Prerequisites
+
+I assume that CUDA and cuDNN are already installed in your system.
+
+- Install CMake GUI
+```
+$ sudo apt install cmake-qt-gui
+```
+- Install protobuf-compiler
+```
+$ sudo apt install protobuf-compiler 
+```
+
+### Create a Conda environment
+
+```
+$ conda create -n openpose python=3.6
+```
+Then, activate it.
+```
+$ source activate openpose
+```
+Now we are in the new Conda environment, openpose.
+
+Install Some Important Conda Packages for OpenPose
+
+```
+(openpose) $ conda install opencv
+(openpose) $ conda install protobuf
+```
+
+### Clone this repository
+
+My OpenPose version is 1.3.0. I cloned it on June 14, 2018.
+
+### Build OpenPose with Caffe
+
+#### Preparation
+
+I assume that your system does not have Caffe installed.
+
+- Start CMake GUI
+```
+(openpose) $ cmake-gui
+```
+Note that you must run this in the `openpose` environment.
+
+- Source... must be your main openpose folder.
+- Build... can be same as the Source. But it is strongly recommended to use `/build` after the source folder name.
+- Click "Configure" 
+  - You are not supposed to see any errors.
+  - This will automatically start downloading Caffe and datasets.
+- If everything is OK, then click "Generate" to create necessary files to build the `openpose`.
+
+#### Build
+
+- Go to the `build` folder.
+```
+(openpose) $ make -j`nproc`
+```
+
+
+---
+
+
 
 <p align="center">
     <img src="doc/media/pose_face_hands.gif", width="480">
